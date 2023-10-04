@@ -116,11 +116,16 @@ def main():
 
         elif choice == '2':
             # Remove product from cart
+            if shopping_cart._is_cart_empty():
+                continue
             product_name = input("Enter product name to remove: ")
             shopping_cart.remove_product(product_name)
+            shopping_cart.display_cart()
 
         elif choice == '3':
             # Update product quantity
+            if shopping_cart._is_cart_empty():
+                continue
             product_name = input("Enter product name to update: ")
             while True:
                 try:
@@ -130,6 +135,7 @@ def main():
                     print("Invalid input. Please enter a number.")
 
             shopping_cart.update_quantity(product_name, new_quantity)
+            shopping_cart.display_cart()
 
         elif choice == '4':
             # Display all items in cart
@@ -137,6 +143,15 @@ def main():
 
         elif choice == '5':
             # Calculate and display total cost
+            if shopping_cart.tax_rate <= 0:
+                print("Tax rate has not been set.")
+                while True:
+                    try:
+                        tax_rate = float(input("Enter tax rate as a decimal (0.08 for 8%): "))
+                        shopping_cart.set_tax_rate(tax_rate)
+                        break
+                    except ValueError:
+                        print("Invalid tax rate. Please enter a decimal between 0 and 1.")
             total_cost = shopping_cart.calculate_total()
             print(f"Total cost: ${total_cost:.2f}")
 

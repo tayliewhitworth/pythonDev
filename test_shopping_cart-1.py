@@ -60,6 +60,10 @@ class TestShoppingCart(unittest.TestCase):
         self.assertFalse(self.cart._is_cart_empty())
         print("test_is_cart_empty: Passed")
 
+    def test_is_cart_empty_empty(self):
+        self.assertTrue(self.cart._is_cart_empty())
+        print("test_is_cart_empty_empty: Passed")
+
     def test_invalid_tax_rate(self):
         self.assertRaises(ValueError, self.cart.set_tax_rate, 1.5)
         print("test_invalid_tax_rate: Passed")
