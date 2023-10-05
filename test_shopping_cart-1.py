@@ -54,13 +54,13 @@ class TestShoppingCart(unittest.TestCase):
         print("test_calculate_total: Passed")
 
     # My tests
-    def test_is_cart_empty(self):
+    def test_is_cart_notempty(self):
         self.cart.add_product(self.product1)
         self.cart.add_product(self.product2)
         self.assertFalse(self.cart._is_cart_empty())
         print("test_is_cart_empty: Passed")
 
-    def test_is_cart_empty_empty(self):
+    def test_is_cart_empty(self):
         self.assertTrue(self.cart._is_cart_empty())
         print("test_is_cart_empty_empty: Passed")
 
